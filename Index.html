@@ -28,7 +28,7 @@
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			var material = new THREE.MeshNormalMaterial();
 			var cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
+			//scene.add( cube );
 
 			camera.position.z = 10;
 			
@@ -68,14 +68,24 @@
 			}
 			
 			function onKeyDown(){
-			switch( event.keyCode ) {
-			   case 83: // up
-			   camera.position.z += 1;
-			   break;
-			   case 87: // down
-			   camera.position.z -= 1;
-			   break;
-			}
+				switch (event.keyCode) {
+					case 65: // A (izquierda)
+					// Mueve la cámara hacia la izquierda (disminuye la posición x)
+					camera.position.x -= 1;
+					break;
+					case 68: // D (derecha)
+					// Mueve la cámara hacia la derecha (aumenta la posición x)
+					camera.position.x += 1;
+					break;
+					case 83: // S (abajo)
+					// Mueve la cámara hacia abajo (disminuye la posición z)
+					camera.position.z += 1;
+					break;
+					case 87: // W (arriba)
+					// Mueve la cámara hacia arriba (aumenta la posición z)
+					camera.position.z -= 1;
+					break;
+  				}
 			}
 
 			animate();

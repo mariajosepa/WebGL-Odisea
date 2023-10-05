@@ -85,7 +85,15 @@
 					// Mueve la cámara hacia arriba (aumenta la posición z)
 					camera.position.z -= 1;
 					break;
-  				}
+					case 81: // Q (rotación izquierda)
+					// Rota la cámara alrededor del eje Y en sentido antihorario
+					camera.rotation.y += Math.PI / 180;
+					break;
+					case 69: // E (rotación derecha)
+					// Rota la cámara alrededor del eje Y en sentido horario
+					camera.rotation.y -= Math.PI / 180;
+					break;
+								}
 			}
 
 			animate();

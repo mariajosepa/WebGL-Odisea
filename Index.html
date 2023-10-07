@@ -37,6 +37,10 @@
 			const texture1 = new THREE.TextureLoader().load( "http://4.bp.blogspot.com/-Dm3fmTzDs8Q/VdQW2MAz3QI/AAAAAAAAAMA/vhwD9aVgWHQ/s1600/earth_normalmap.png" );
 			const texture2 = new THREE.TextureLoader().load( "https://thumbs.dreamstime.com/b/texture-soccer-ball-13533294.jpg" );
 			const texture3 = new THREE.TextureLoader().load( "Mushrooms1.jpg" );
+			const texture4 = new THREE.TextureLoader().load( "Ocean.jpg" );
+			const texture5 = new THREE.TextureLoader().load( "piso.jpg" );
+			const texture6 = new THREE.TextureLoader().load( "montana.jpg" );
+			
 			
 			//var geo = new THREE.SphereGeometry( 2, 24, 16 );
 			//var materials = new THREE.MeshBasicMaterial({map: texture});
@@ -58,8 +62,58 @@
 				mesh.position.x = 5;
 				scene.add( mesh );
 			});	
-			
-			
+
+			//Ocean
+			loader.load("Ocean.json", function( group ) {
+			mesh = group.children[0];
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture4 })
+				//mesh.scale(3, 3, 3);
+				mesh.position.x = 3;
+				scene.add( mesh );
+			});
+
+			//Piso
+			loader.load("piso.json", function( group ) {
+			mesh = group.children[0];
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture5 })
+				mesh.scale.set(3, 3, 3);
+				mesh.position.x = 2;
+				scene.add( mesh );
+			});
+
+			/*
+			const objectP = [{x: 1, y: 1, z: 1}];
+
+			loader.load("piso.json", function( group ) {
+			const material = new THREE.MeshPhongMaterial({
+				color: 0xaaaaaa,
+				specular: 0x333333,
+				shininess: 15,
+				map: texture5
+			});
+
+			for (let i = 0; i < objectP.length; i++){
+				const mesh = group.children[0];
+				mesh.material = material;
+				const position = objectP[i];
+				mesh.position.set(position.x, position.y, position.z);
+				mesh.scale.set(0.2,0.2,0.2);
+				scene.add(mesh);
+			}
+				
+			});
+			*/
+
+			// Montaña
+			loader.load("montana.json", function( group ) {
+			mesh = group.children[0];
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture6 })
+				mesh.scale.set(3, 3, 3);
+				mesh.position.x = 2;
+				scene.add( mesh );
+			});
+
+
 			//mushrooms
 			//Coordenadas de los champiñones
 			const objectPositions = [

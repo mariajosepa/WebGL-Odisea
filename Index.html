@@ -32,32 +32,66 @@
 
 			camera.position.z = 10;
 			
+			//importo mis texturas
 			const texture = new THREE.TextureLoader().load( "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/18fc9e8c-8d1d-4492-a808-d125b9310556/d7pxfv4-6a44b369-8c61-41c8-937b-432f356e5ec7.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzE4ZmM5ZThjLThkMWQtNDQ5Mi1hODA4LWQxMjViOTMxMDU1NlwvZDdweGZ2NC02YTQ0YjM2OS04YzYxLTQxYzgtOTM3Yi00MzJmMzU2ZTVlYzcucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ee-eKe4cRDHjefvkVSp2FdJrh0kSKMU9FOsYQC3-5pk" );
 			const texture1 = new THREE.TextureLoader().load( "http://4.bp.blogspot.com/-Dm3fmTzDs8Q/VdQW2MAz3QI/AAAAAAAAAMA/vhwD9aVgWHQ/s1600/earth_normalmap.png" );
 			const texture2 = new THREE.TextureLoader().load( "https://thumbs.dreamstime.com/b/texture-soccer-ball-13533294.jpg" );
+			const texture3 = new THREE.TextureLoader().load( "Mushrooms1.jpg" );
 			
-			
-			var geo = new THREE.SphereGeometry( 2, 24, 16 );
+			//var geo = new THREE.SphereGeometry( 2, 24, 16 );
 			//var materials = new THREE.MeshBasicMaterial({map: texture});
-			var materials = new THREE.MeshPhongMaterial({color: 0xaaaaaa, specular: 0x333333, shininess: 50, map: texture, normalMap: texture1}) //, specularMap: specMap,normalMap: normalMap});
+			//var materials = new THREE.MeshPhongMaterial({color: 0xaaaaaa, specular: 0x333333, shininess: 50, map: texture, normalMap: texture1}) //, specularMap: specMap,normalMap: normalMap});
 			
-			var sphere = new THREE.Mesh( geo, materials );
-			sphere.position.x = -5;
-			scene.add( sphere );
+			//var sphere = new THREE.Mesh( geo, materials );
+			//sphere.position.x = -5;
+			//scene.add( sphere );
 
 	
+			//Cargo los objetos del mundo
 			var loader = new THREE.ObjectLoader();
 			
+			//ciclope
 			loader.load("model.json", function( group ) {
 			mesh = group.children[0];
 				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture })
 				//mesh.scale(3, 3, 3);
 				mesh.position.x = 5;
 				scene.add( mesh );
-			});			
+			});	
 			
+			
+			//mushrooms
+			//Coordenadas de los champiñones
+			const objectPositions = [
+			{ x: 2, y: 1, z: 1 },
+			{ x: -1, y: 1, z: 0 },
+			{ x: 3, y: 1, z: 3 },
+			{ x: 10, y: 1, z: 2 },
+			{ x: -7, y: 1, z: 2 }
+			];
+
+			loader.load("Mushrooms1.json", function(group) {
+			const material = new THREE.MeshPhongMaterial({
+				color: 0xaaaaaa,
+				specular: 0x333333,
+				shininess: 15,
+				map: texture3
+			});
+			//aca cargo varios champiñones
+			for (let i = 0; i < objectPositions.length; i++) {
+				const mesh = group.children[0].clone();
+				mesh.material = material;
+
+				const position = objectPositions[i];
+				mesh.position.set(position.x, position.y, position.z);
+				mesh.scale.set(0.02, 0.02, 0.02);
+
+				scene.add(mesh);
+			}
+			});
 
 
+			//movimiento de camara
 			function animate() {
 				requestAnimationFrame( animate );
 
@@ -66,35 +100,44 @@
 
 				renderer.render( scene, camera );
 			}
-			
-			function onKeyDown(){
+	
+			function onKeyDown() {
 				switch (event.keyCode) {
 					case 65: // A (izquierda)
 					// Mueve la cámara hacia la izquierda (disminuye la posición x)
-					camera.position.x -= 1;
+					camera.position.x -= 2;
 					break;
 					case 68: // D (derecha)
 					// Mueve la cámara hacia la derecha (aumenta la posición x)
-					camera.position.x += 1;
+					camera.position.x += 2;
 					break;
-					case 83: // S (abajo)
-					// Mueve la cámara hacia abajo (disminuye la posición z)
-					camera.position.z += 1;
+					case 83: // S (atrás)
+					// Mueve la cámara hacia atrás (disminuye la posición z)
+					camera.position.z += 2;
 					break;
-					case 87: // W (arriba)
-					// Mueve la cámara hacia arriba (aumenta la posición z)
-					camera.position.z -= 1;
+					case 87: // W (adelante)
+					// Mueve la cámara hacia adelante (aumenta la posición z)
+					camera.position.z -= 2;
 					break;
 					case 81: // Q (rotación izquierda)
 					// Rota la cámara alrededor del eje Y en sentido antihorario
-					camera.rotation.y += Math.PI / 180;
+					camera.rotation.y += Math.PI / 45;
 					break;
 					case 69: // E (rotación derecha)
 					// Rota la cámara alrededor del eje Y en sentido horario
-					camera.rotation.y -= Math.PI / 180;
+					camera.rotation.y -= Math.PI / 45;
 					break;
-								}
-			}
+					case 88: // X (abajo)
+					// Mueve la cámara hacia abajo (disminuye la posición y)
+					camera.position.y -= 2;
+					break;
+					case 90: // Z (arriba)
+					// Mueve la cámara hacia arriba (aumenta la posición y)
+					camera.position.y += 2;
+					break;
+					}
+				}
+
 
 			animate();
 		</script>

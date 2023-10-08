@@ -24,6 +24,11 @@
 			light.position.set( -20, 20, 20 );
 			scene.add(light);
 
+			//
+			const ambientLight = new THREE.AmbientLight(0xFFFFFF); // Color de luz ambiental
+			scene.add(ambientLight);
+
+
 		
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			var material = new THREE.MeshNormalMaterial();
@@ -58,8 +63,9 @@
 			loader.load("model.json", function( group ) {
 			mesh = group.children[0];
 				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture3 })
-				//mesh.scale(3, 3, 3);
-				mesh.position.x = 5;
+				mesh.position.x = 2;
+				mesh.position.y = -2.6;
+				mesh.position.z = 3.5;
 				scene.add( mesh );
 			});	
 
@@ -77,20 +83,33 @@
 			loader.load("piso.json", function( group ) {
 			mesh = group.children[0];
 				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture5 })
-				mesh.scale.set(1, 1, 1);
-				mesh.position.x = 1;
-				mesh.position.y = 1;
+				mesh.scale.set(7, 7, 7);
+				mesh.position.x = -2.8;
+				mesh.position.y = -2.6;
+				mesh.position.z = 3.5;
 				scene.add( mesh );
 			});
 
 
-			// Montaña
+			// Montaña 1
 			loader.load("montana.json", function( group ) {
 			mesh = group.children[0];
 				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture6 })
-				mesh.scale.set(3, 3, 3);
-				mesh.position.x = -1;
-				mesh.position.y = -1;
+				mesh.scale.set(10, 7, 3);
+				mesh.position.x = -3.7;
+				mesh.position.y = -2.5;
+				mesh.position.z = -6.2;
+				scene.add( mesh );
+			});
+
+			// Montaña 2
+			loader.load("montana.json", function( group ) {
+			mesh = group.children[0];
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture6 })
+				mesh.scale.set(6, 6, 3);
+				mesh.position.x = 3.5;
+				mesh.position.y = -2.5;
+				mesh.position.z = -6.2;
 				scene.add( mesh );
 			});
 
@@ -98,11 +117,16 @@
 			//mushrooms
 			//Coordenadas de los champiñones
 			const objectPositions = [
-			{ x: 2, y: 1, z: 1 },
-			{ x: -1, y: 1, z: 0 },
-			{ x: 3, y: 1, z: 3 },
-			{ x: 10, y: 1, z: 2 },
-			{ x: -7, y: 1, z: 2 }
+			{ x: -2, y:-1.8, z: 18 },
+			{ x: -9, y: -1.8, z: 6 },
+			{ x: 3, y: -1.8, z: 10 },
+			{ x: 10, y: -1.8, z: 7 },
+			{ x: -7, y: -1.8, z: 15 },
+			{ x: 6, y: -1.8, z: 13 },
+			{ x: -1, y: -1.8, z: 9 },
+			{ x: 5, y: -1.8, z: 5 },
+			{ x: -5, y: -1.8, z: 19 },
+			{ x: -7, y: -1.8, z: 15 }
 			];
 
 			loader.load("Mushrooms1.json", function(group) {

@@ -66,9 +66,10 @@
 			//Ocean
 			loader.load("Ocean.json", function( group ) {
 			mesh = group.children[0];
-				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture4 })
-				//mesh.scale(3, 3, 3);
-				mesh.position.x = 3;
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture, normalMap: texture4 })
+				mesh.scale.set(1, 1, 1);
+				mesh.position.x = -4;
+				mesh.position.y = -4;
 				scene.add( mesh );
 			});
 
@@ -76,8 +77,9 @@
 			loader.load("piso.json", function( group ) {
 			mesh = group.children[0];
 				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture5 })
-				mesh.scale.set(3, 3, 3);
-				mesh.position.x = 2;
+				mesh.scale.set(1, 1, 1);
+				mesh.position.x = 1;
+				mesh.position.y = 1;
 				scene.add( mesh );
 			});
 
@@ -85,7 +87,7 @@
 			// Montaña
 			loader.load("montana.json", function( group ) {
 			mesh = group.children[0];
-				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture3 })
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture })
 				mesh.scale.set(3, 3, 3);
 				mesh.position.x = -1;
 				mesh.position.y = -1;

@@ -57,7 +57,7 @@
 			//ciclope
 			loader.load("model.json", function( group ) {
 			mesh = group.children[0];
-				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture })
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture3 })
 				//mesh.scale(3, 3, 3);
 				mesh.position.x = 5;
 				scene.add( mesh );
@@ -81,35 +81,14 @@
 				scene.add( mesh );
 			});
 
-			/*
-			const objectP = [{x: 1, y: 1, z: 1}];
-
-			loader.load("piso.json", function( group ) {
-			const material = new THREE.MeshPhongMaterial({
-				color: 0xaaaaaa,
-				specular: 0x333333,
-				shininess: 15,
-				map: texture5
-			});
-
-			for (let i = 0; i < objectP.length; i++){
-				const mesh = group.children[0];
-				mesh.material = material;
-				const position = objectP[i];
-				mesh.position.set(position.x, position.y, position.z);
-				mesh.scale.set(0.2,0.2,0.2);
-				scene.add(mesh);
-			}
-				
-			});
-			*/
 
 			// Montaña
 			loader.load("montana.json", function( group ) {
 			mesh = group.children[0];
-				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture6 })
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture3 })
 				mesh.scale.set(3, 3, 3);
-				mesh.position.x = 2;
+				mesh.position.x = -1;
+				mesh.position.y = -1;
 				scene.add( mesh );
 			});
 

@@ -112,6 +112,17 @@
 				mesh.position.z = -6.2;
 				scene.add( mesh );
 			});
+			
+			//puerto
+			loader.load("puerto.json", function( group ) {
+			mesh = group.children[0];
+				mesh.material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x333333, shininess: 15, map: texture6 })
+				mesh.scale.set(0.02, 0.02, 0.02);
+				mesh.position.x = -6;
+				mesh.position.y = -1.8;
+				mesh.position.z = 9;
+				scene.add( mesh );
+			});
 
 
 			//mushrooms
